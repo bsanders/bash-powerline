@@ -5,20 +5,22 @@
 
 __powerline() {
     # Colorscheme
-    readonly RESET='\[\033[m\]'
-    readonly COLOR_CWD='\[\033[0;34m\]' # blue
-    readonly COLOR_GIT='\[\033[0;36m\]' # cyan
-    readonly COLOR_SUCCESS='\[\033[0;32m\]' # green
-    readonly COLOR_FAILURE='\[\033[0;31m\]' # red
+    if [[ -z "$SYMBOL_GIT_BRANCH" ]]; then
+      readonly RESET='\[\033[m\]'
+      readonly COLOR_CWD='\[\033[0;37m\]' # white
+      readonly COLOR_GIT='\[\033[0;36m\]' # cyan
+      readonly COLOR_SUCCESS='\[\033[0;32m\]' # green
+      readonly COLOR_FAILURE='\[\033[0;31m\]' # red
 
-    readonly SYMBOL_GIT_BRANCH='⑂'
-    readonly SYMBOL_GIT_MODIFIED='*'
-    readonly SYMBOL_GIT_PUSH='↑'
-    readonly SYMBOL_GIT_PULL='↓'
+      readonly SYMBOL_GIT_BRANCH='⑂ '
+      readonly SYMBOL_GIT_MODIFIED='*'
+      readonly SYMBOL_GIT_PUSH='↑'
+      readonly SYMBOL_GIT_PULL='↓'
+    fi
 
     if [[ -z "$PS_SYMBOL" ]]; then
       case "$(uname)" in
-          Darwin)   PS_SYMBOL='';;
+          Darwin)   PS_SYMBOL='$';;
           Linux)    PS_SYMBOL='$';;
           *)        PS_SYMBOL='%';;
       esac
